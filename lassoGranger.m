@@ -39,10 +39,13 @@ th = 0;
 aic = norm(Am*vals2 - bm)^2/(T-P) + (sum(abs(vals2) > th))*2/(T-P);
 
 % Reformatting the results into NxP matrix
-n1Coeff = zeros(N, P);
-for i = 1:N
-    n1Coeff(i, :) = vals2( ((i-1)*P+1): (i*P));
-end
+%n1Coeff = zeros(N, P);
+%for i = 1:N
+%    n1Coeff(i, :) = vals2( ((i-1)*P+1): (i*P));
+%end
+
+%--- Correction nikb
+n1Coeff = reshape(vals2,[N,P])
 
 sumCause = sum(abs(n1Coeff), 2);
 if type == 'r'
